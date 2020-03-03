@@ -1,0 +1,25 @@
+{
+  "name": "@javascriptru/json-db",
+  "version": "1.0.0",
+  "main": "db.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/javascriptru/json-db.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/javascriptru/json-db/issues"
+  },
+  "homepage": "https://github.com/javascriptru/json-db#readme",
+  "description": "",
+  "dependencies": {
+    "@javascriptru/transliterate": "github:javascriptru/transliterate",
+    "ajv": "^6.12.0",
+    "pluralize": "^8.0.0",
+    "uuid": "^7.0.1"
+  }
+}
