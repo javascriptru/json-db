@@ -2,30 +2,19 @@ const path = require('path');
 const fs = require('fs');
 const Ajv = require('ajv');
 const pluralize = require('pluralize');
-const transliterate = require('../../../libs/transliterate');
+const transliterate = require('@javascriptru/transliterate');
 const uuid = require('uuid/v4');
 
-const dbPath = path.join(__dirname, '../data/db.json');
-const schemaPath = path.join(__dirname, '../db.schemas.js');
+module.exports = class Db {
 
-class Db {
-
-  constructor(filePath, schemasPath) {
-    this.filePath = filePath;
+  constructor({dataPath, schemasPath}) {
+    this.filePath = dataPath;
     let schemas = require(schemasPath);
     this.ajv = new Ajv({
       schemas,
       allErrors: true,
       // verbose: true
     });
-  }
-
-  static instance() {
-    if (!this._instance) {
-      this._instance = new Db(dbPath, schemaPath);
-      this._instance.load();
-    }
-    return this._instance;
   }
 
   getAll() {
@@ -81,11 +70,12 @@ class Db {
 
   // product/db/...
   getValidate(name) {
-    return this.ajv.getSchema(`https://javascript.info/schemas/${name}.json`);
+    return this.ajv.getSchema(name);
   }
 
-  validateSelf() {
-    let validate = this.ajv.getSchema(`https://javascript.info/schemas/db.json`);
+  validateAll() {
+    // fixme
+    let validate = this.ajv.getSchema('db');
     if (!validate({db: this.data})) {
       console.error(validate.errors);
       throw new Error("Validation error");
@@ -126,6 +116,3 @@ class Db {
   }
 
 }
-
-
-module.exports = Db.instance();

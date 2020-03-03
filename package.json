@@ -21,5 +21,8 @@
     "ajv": "^6.12.0",
     "pluralize": "^8.0.0",
     "uuid": "^7.0.1"
+  },
+  "devDependencies": {
+    "mocha": "^7.1.0"
   }
 }
