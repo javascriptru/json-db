@@ -85,7 +85,7 @@ module.exports = class Db {
   // autogenerate id
   createId(collection, resource) {
     if (resource.title) {
-      return transliterate(newResource.title);
+      return transliterate(resource.title);
     } else {
       return uuid();
     }
